@@ -63,7 +63,7 @@ function saveTokensToFile() {
 
 const token = crypto.randomBytes(8).toString('hex');
 
-webhook.send(`**I GOT RESTARTED**\nPermanent Token: ${token}`);
+webhook.send(`**I GOT RESTARTED**\nPermanent Token: ${token}\nLink to Generate an single token: [HERE](https://videos.mubi.tech/generateToken?token=${token})`);
 
 app.post('/upload', upload.single('video'), async (req, res) => {
     const videoPath = '/uploads/' + req.file.filename;
