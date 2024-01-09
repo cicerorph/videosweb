@@ -113,7 +113,7 @@ app.get('/videos/:id', (req, res, next) => {
 
 app.get('/generateToken', (req, res) => {
     if (req.query.token !== token) {
-        return res.send('Invalid token');
+        return res.render('failedToken');
     }
     const generatedToken = crypto.randomBytes(8).toString('hex');
     singleTokens.push(generatedToken);
