@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/style.css">
 <style>
-    body {
-      background-image: url("https://http.cat/404.jpg");
-      background-position: center;
-      background-repeat: repeat;
-      animation: scrolling 7.5s linear 1;
-      animation-direction: forward;
-      animation-iteration-count: infinite;
-    }
-    @keyframes scrolling {
+  /* Your existing styles for background, animations, etc. */
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url("https://http.cat/404.jpg");
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    animation: scrolling 7.5s linear infinite;
+  }
+  
+  @keyframes scrolling {
     0% {
-        background-position: 0 0;
+      background-position: 0 0;
     }
     100% {
-        background-position: -750px 600px;
+      background-position: -750px 600px;
     }
-		p {
-			  position: absolute;
-			  top: 50%;
-			  left: 50%;
-			  transform: translate(-50%, -50%);
-		}
-}
+  }
+  
+  p {
+    color: #FFFFFF;
+    text-align: center;
+    margin: 10px 0;
+  }
 </style>
 </head>
 <body>
-<p>Error 404!!!!!!!<\p><br><p>not found.......</p><br><br><p>did you make a typo? maybe.</p><br><br><a href="https://videos.mubi.tech"><p>click here to go back to the homepage!!!</p></a>
+<p>Error 404!!!!!!!</p>
+<p>not found.......</p>
+<p>did you make a typo? maybe.</p>
+<a href="https://videos.mubi.tech"><p>click here to go back to the homepage!!!</p></a>
 </body>
 </html>
