@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uploaded Videos</title>
+    <link href="/style.css" rel="stylesheet" />
+    <meta property="og:title" content="Main Page" />
+    <meta property="og:description" content="Videos MubiLop" />
+    <style>
+        body {
+            position: absolute;
+            background-color: rgb(29, 29, 29);
+            color: rgb(255, 255, 255);
+            text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+            margin: 10px;
+            margin-left: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .header a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            transition: all 0.25s;
+            margin-right: 20px;
+        }
+
+        .video-wrapper {
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+            transition: all 0.25s;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 5px #000000, 0 0 1px #000000;
+            background-color: rgb(44, 44, 44);
+        }
+
+        .video-wrapper:hover {
+            scale: 1.05;
+            box-shadow: 0 0 10px #000000, 0 0 1px #000000;
+            color: rgb(0, 162, 255);
+        }
+
+        .video-thumbnail {
+            width: 320px;
+            max-width: 320px;
+            height: 170px;
+            max-height: 170px;
+            object-fit: contain;
+        }
+
+        .video-title {
+            margin-top: 5px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <a href="/upload"><h1>Upload Video</h1></a>
+        <a href="/login">Login</a>
+    </div>
+    <h1>Uploaded Videos</h1>
+    <% videos.forEach(video => { %>
+    <a href="/videos/<%= video.id %>">
+        <div class="video-wrapper">
+            <img class="video-thumbnail" id="<%= video.thumbnail %>" src="<%= video.thumbnail %>" alt="Video Thumbnail">
+            <h3 class="video-title" for="<%= video.thumbnail %>"><%= video.title %></h3>
+        </div>
+    </a>
+    <% }); %>
+</body>
+
+</html>

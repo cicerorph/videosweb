@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Upload</title>
+    <link href="/style.css" rel="stylesheet" />
+    <meta property="og:title" content="Upload an Video" />
+    <meta property="og:description" content="Upload an video here omg!" />
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="file"],
+        input[type="text"],
+        textarea {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #555;
+            box-sizing: border-box;
+            background-color: #444;
+            color: #fff;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #5C6BC0;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #3949AB;
+        }
+    </style>
+</head>
+<body>
+    <form action="/upload" method="post" enctype="multipart/form-data" id="form">
+        <h1>Upload Video</h1>
+        <input type="file" name="video" accept="video/*" required>
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea form ="form" name="description" placeholder="Description" cols="35" wrap="soft"></textarea>
+        <input type="text" name="token" placeholder="Token" required>
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://vjs.zencdn.net/8.9.0/video-js.css" rel="stylesheet" />
+    <link href="/style.css" rel="stylesheet" />
+    <meta property="og:title" content="<%= video.title %>" />
+    <meta property="og:description" content="<%= video.description %>" />
+    <meta property="og:url" content="https://videos.mubi.tech/" />
+    <meta property="og:image" content="<%= video.thumbnail %>" />
+    <meta name="twitter:card" content="summary_large_image">
+    <style>
+        body {
+            display: flex;
+            background-color: rgb(29, 29, 29);
+            color: rgb(255, 255, 255);
+            text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+            margin: auto;
+            margin-top: 20px;
+            max-width: 50%;
+        }
+
+        .video-js {
+            width: 854px;
+            height: 480px;
+        }
+
+        .description {
+            text-align: left;
+            white-space: pre-wrap;
+        }
+
+        .bottom {
+            box-shadow: 0 0 10px #000000, 0 0 1px #000000;
+            padding: 10px;
+            background-color: rgb(46, 46, 46);
+            border-radius: 10px;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .video-wrapper {
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+            transition: all 0.25s;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 5px #000000, 0 0 1px #000000;
+            background-color: rgb(44, 44, 44);
+            width: 160px;
+            padding-bottom: 0px;
+        }
+
+        .video-wrapper:hover {
+            scale: 1.05;
+            box-shadow: 0 0 10px #000000, 0 0 1px #000000;
+            color: rgb(0, 162, 255);
+        }
+
+        .video-thumbnail {
+            object-fit: contain;
+            width: 160x;
+            max-width: 160px;
+            height: 85px;
+            max-height: 85px;
+        }
+
+        .video-title {
+            margin-top: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            transition: all 0.25s;
+            font-size: 10px;
+        }
+        
+        .watchother {
+            display: inline-block;
+            margin-left: 20px;
+        }
+        
+        .title {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <video class="video-js" controls preload="auto" data-setup="{}">
+            <source src="<%= video.path %>" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <h1 class="title"><%= video.title %></h1>
+        <div class="bottom">
+            <h3>Description:</h3>
+            <pre class="description"><%= video.description %></pre>
+        </div>
+        <a href="https://videos.mubi.tech<%= video.path %>"<h1 style="text-align: center;">Download</h1></a>
+    </div>
+    <div class="watchother">
+        <a href="/videos"><h1 style="text-align: center;">Watch other videos</h1></a>
+        <% videos.slice(-3).forEach(video => { %>
+            <a href="/videos/<%= video.id %>">
+                <div class="video-wrapper">
+                        <img class="video-thumbnail" id="<%= video.thumbnail %>" src="<%= video.thumbnail %>" alt="Video Thumbnail">
+                        <h3 class="video-title" for="<%= video.thumbnail %>"><%= video.title %></h3>
+                </div>
+            </a>
+        <% }); %>
+    </div>
+    <script src="https://vjs.zencdn.net/8.9.0/video.min.js"></script>
+</body>
+</html>
