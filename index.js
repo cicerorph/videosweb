@@ -74,7 +74,7 @@ app.post('/upload', upload.single('video'), async (req, res) => {
             saveTokensToFile(); // Save tokens to tokens.json after removal
         } else {
             fs.unlinkSync('.' + videoPath);
-            return res.status(403).send('Invalid token');
+            return res.render('failedToken');
         }
     }
 
