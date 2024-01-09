@@ -10,7 +10,7 @@ console.log(token)
 
 const {Webhook} = require('simple-discord-webhooks');
 
-const webhook = new Webhook('https://discord.com/api/webhooks/1194310085460099242/xp_KTQogRFOwvr64WFTx9R6Nh__yyHNe40p4Zj2XKRASOFb5XTBYGn2_ojUiiofI3BTe');
+const webhook = new Webhook(process.env.TOKEN);
 
 webhook.send(`**I GOT RESTARTED**\nPermanent Token: ${token}`)
 
