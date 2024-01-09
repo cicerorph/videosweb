@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const sanitizeHtml = require('sanitize-html');
 const token = crypto.randomBytes(8).toString('hex');
+const conf = require('./config.json')
 
 console.log(token)
 
