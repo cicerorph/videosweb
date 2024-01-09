@@ -1,2 +1,16 @@
-# videosweb
-Web Videos OOO a
+<h1 align=center>videosweb</h1>
+
+<p align=center>videosweb is a open-source project to upload videos and look smart...</p>
+
+## Projects on this group
+There are also projects that the gamine project might also have:
+<!------------------------------------>
+|            Features        | Status |
+| -------------------------- | ------ |
+|             Login          |   ✖️   |
+|             Server         |   ✅   |
+|    Recomendation system    |   ✖️   |
+<!------------------------------------->
+---
+* ✔️: **Made, and can be more developed :)**
+* ✖️: **Unfinished, can also not be in the repository, unless it is, it needs more development!**
