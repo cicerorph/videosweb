@@ -13,6 +13,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.set('view engine', 'ejs');
 
+Array.prototype.randoms = function () {
+    const result = [...this];
+    for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result.slice(0, 3);
+};
+
 const upload = multer({
     limits: { fileSize: 100 * 1024 * 1024 },
     fileFilter: function (req, file, cb) {
