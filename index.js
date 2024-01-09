@@ -62,6 +62,7 @@ app.post('/upload', upload.single('video'), async (req, res) => {
         if (singleTokens.includes(req.body.token)) {
             const indexToRemove = singleTokens.indexOf(req.body.token);
             singleTokens.splice(indexToRemove, 1);
+            saveTokensToFile(); // Save tokens to tokens.json after removal
         } else {
             fs.unlinkSync('.' + videoPath);
             return res.status(403).send('Invalid token');
@@ -77,6 +78,12 @@ app.post('/upload', upload.single('video'), async (req, res) => {
     });
 
     const videos = JSON.parse(fs.readFileSync('./videos.json', 'utf8'));
+    const videoIndex = videos.findIndex(video => video.id === req.file.filename);
+    if (videoIndex !== -1) {
+        videos.splice(videoIndex, 1);
+        fs.writeFileSync('./videos.json', JSON.stringify(videos));
+    }
+
     videos.push({ id: req.file.filename, path: videoPath, thumbnail: videoPath + '.png', title: sanitizeHtml(req.body.title), description: sanitizeHtml(req.body.description).replace('\\r\\n', '\\n') });
     fs.writeFileSync('./videos.json', JSON.stringify(videos));
 
