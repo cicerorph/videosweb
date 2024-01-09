@@ -21,21 +21,6 @@
             max-width: 50%;
         }
 
-        .header {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgb(29, 29, 29);
-            width: 100%;
-            /* Remove the position: absolute */
-            /* Remove top, right, and z-index properties */
-            /* Remove the box-shadow property if you don't need it */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            /* Optional: Add a subtle shadow for depth */
-            color: #fff;
-        }
-
         .video-js {
             width: 854px;
             height: 480px;
@@ -104,12 +89,6 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <a href="https://videos.mubi.tech"><h1>videos.mubi.tech</h1></a>
-        <a></a>
-        <a href="/upload">Upload</a>
-        <a href="https://auth.itinerary.eu.org/auth/?redirect=aHR0cHM6Ly92aWRlb3MubXViaS50ZWNoLw==&name=Videos Mubi Tech">Login</a>
-    </div>
     <div class="container">
         <video class="video-js" controls preload="auto" data-setup="{}">
             <source src="<%= video.path %>" type="video/mp4">
