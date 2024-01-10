@@ -102,11 +102,13 @@ app.post('/upload', upload.single('video'), async (req, res) => {
 });
 
 app.post('/delete', async (req, res) => {
-    const videoId = req.body.id;
-
-    if (req.body.token !== token) {
-        return res.render('failedToken');
+    console.log(req)
+    // Check if req.body is defined
+    if (!req.body || !req.body.id || req.body.token !== token) {
+      return res.render('failedToken');
     }
+  
+    const videoId = req.body.id;
   
     // Delete video from videos.json
     const videos = JSON.parse(fs.readFileSync('./videos.json', 'utf8'));
@@ -115,7 +117,7 @@ app.post('/delete', async (req, res) => {
       videos.splice(videoIndex, 1);
       fs.writeFileSync('./videos.json', JSON.stringify(videos));
     }
-
+  
     const videoFilePath1 = `./uploads/${videoId}`;
     if (fs.existsSync(videoFilePath1)) {
       fs.unlinkSync(videoFilePath1);
@@ -127,8 +129,8 @@ app.post('/delete', async (req, res) => {
       fs.unlinkSync(videoFilePath2);
     }
   
-    res.send('Video deleted successfully');
-  });
+    res.render('videodeleted');
+});  
 
 app.get('/upload', (req, res) => {
     res.render('upload');
