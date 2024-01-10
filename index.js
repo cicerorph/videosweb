@@ -7,12 +7,18 @@ const sanitizeHtml = require('sanitize-html');
 const { Webhook } = require('simple-discord-webhooks');
 const extractFrames = require('ffmpeg-extract-frames');
 const conf = require('./config.json');
+const bodyParser = require('body-parser')
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.set('view engine', 'ejs');
-app.use(express.bodyParser());
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 Array.prototype.randoms = function () {
     const result = [...this];
