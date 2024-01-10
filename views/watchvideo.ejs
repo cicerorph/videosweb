@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://vjs.zencdn.net/8.9.0/video-js.css" rel="stylesheet" />
@@ -9,8 +10,19 @@
     <meta property="og:url" content="https://videos.mubi.tech/" />
     <meta property="og:image" content="<%= video.thumbnail %>" />
     <meta name="twitter:card" content="summary_large_image">
-    <title><%= video.title %> | videos.mubi.tech</title>
+    <title>
+        <%= video.title %> | videos.mubi.tech</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gluten&display=swap');
+        * {
+            font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+            /**font-family: "Comic Sans MS", "Arial", cursive;
+    sorry it needs to be native!
+    */
+        }
+
+        /**gotta remove this after*/
+
         body {
             display: flex;
             background-color: rgb(29, 29, 29);
@@ -77,41 +89,154 @@
             transition: all 0.25s;
             font-size: 10px;
         }
-        
+
         .watchother {
             display: inline-block;
             margin-left: 20px;
         }
-        
+
         .title {
             text-align: center;
         }
+
+        .menu {
+            position: fixed;
+            background-color: #333;
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 5px;
+            box-shadow: 0 0 5px #000000, 0 0 1px #000000;
+            z-index: 100;
+            color: #fff;
+            display: none;
+        }
+
+        .menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .menu li:hover {
+            background-color: #555;
+        }
+        
+        .spacer {
+            display: block;
+            height: 5px;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <video class="video-js" controls preload="auto" data-setup="{}">
-            <source src="<%= video.path %>" type="video/mp4">
+            <source src="<%= video.path %>">
             Your browser does not support the video tag.
         </video>
-        <h1 class="title"><%= video.title %></h1>
+        <h1 class="title">
+            <%= video.title %>
+        </h1>
         <div class="bottom">
             <h3>Description:</h3>
             <pre class="description"><%= video.description %></pre>
         </div>
-        <a href="https://videos.mubi.tech<%= video.path %>"<h1 style="text-align: center;">Download</h1></a>
     </div>
     <div class="watchother">
-        <a href="/videos"><h1 style="text-align: center;">Watch other videos</h1></a>
+        <a href="/videos">
+            <h1 style="text-align: center;">Watch other videos</h1>
+        </a>
         <% videos.slice(-3).forEach(video => { %>
             <a href="/videos/<%= video.id %>">
                 <div class="video-wrapper">
-                        <img class="video-thumbnail" id="<%= video.thumbnail %>" src="<%= video.thumbnail %>" alt="Video Thumbnail">
-                        <h3 class="video-title" for="<%= video.thumbnail %>"><%= video.title %></h3>
+                    <img class="video-thumbnail" id="<%= video.thumbnail %>" src="<%= video.thumbnail %>" alt="Video Thumbnail">
+                    <h3 class="video-title" for="<%= video.thumbnail %>">
+                        <%= video.title %>
+                    </h3>
                 </div>
             </a>
-        <% }); %>
+            <% }); %>
+    </div>
+    <div id="menu" class="menu" style="display: none;">
+        <ul>
+            <li id="home">Home</li>
+            <li id="loop">Loop</li>
+            <li id="copyUrl">Copy URL</li>
+            <li id="copyTime">Copy URL at time</li>
+            <li id="download">Download</li>
+        </ul>
     </div>
     <script src="https://vjs.zencdn.net/8.9.0/video.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var vid = document.querySelector('.video-js');
+            var menu = document.getElementById('menu');
+
+            vid.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                menu.style.display = 'block';
+                menu.style.left = `${e.pageX}px`;
+                menu.style.top = `${e.pageY}px`;
+                return false;
+            }, false);
+
+            document.addEventListener('click', function(e) {
+                if (e.target.offsetParent !== menu) {
+                    menu.style.display = 'none';
+                }
+            }, false);
+
+            document.getElementById('loop').addEventListener('click', function() {
+                vid.loop = !vid.loop;
+            });
+
+            document.getElementById('copyUrl').addEventListener('click', function() {
+                var videoURL = vid.currentSrc;
+                navigator.clipboard.writeText(videoURL).then(() => {
+                    alert('Copied to cliboard!')
+                }).catch(err => {
+                    alert('Error, could not copy to clipboard.')
+                });
+            });
+
+            document.getElementById('copyTime').addEventListener('click', function() {
+                var videoURL = vid.currentSrc + '#t=' + Math.round(vid.currentTime);
+                navigator.clipboard.writeText(videoURL).then(() => {
+                    alert('Copied to cliboard!')
+                }).catch(err => {
+                    alert('Error, could not copy to clipboard.')
+                });
+            });
+
+            document.getElementById('download').addEventListener('click', function() {
+                var videoURL = "https://videos.mubi.tech" + vid.getAttribute('data-path');
+                window.open(videoURL, '_blank').focus();
+            });
+        });
+        
+        document.getElementById('home').addEventListener('click', function() {
+    window.location.href = "https://videos.mubi.tech";
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var video = document.querySelector('.video-js');
+    
+    function time(timeString) {
+        var time = parseInt(timeString, 10);
+        return isNaN(time) ? 0 : time;
+    }
+
+    if(window.location.hash.startsWith('#t=')) {
+        var time = time(window.location.hash.substring(3));
+        video.currentTime = time;
+    }
+});
+    </script>
 </body>
+
 </html>
