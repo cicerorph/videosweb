@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Video</title>
+    <link href="/style.css" rel="stylesheet" />
+    <meta property="og:title" content="Delete an Video" />
+    <meta property="og:description" content="This is admin only so idc" />
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="file"],
+        input[type="text"],
+        textarea {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #555;
+            box-sizing: border-box;
+            background-color: #444;
+            color: #fff;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #5C6BC0;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #3949AB;
+        }
+    </style>
+</head>
+<body>
+    <form action="/delete" method="post" enctype="multipart/form-data" id="form">
+        <h1>Delete Video</h1>
+        <input type="text" name="id" placeholder="ID of the Video" required>
+        <input type="text" name="token" placeholder="Main Token" required>
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>
