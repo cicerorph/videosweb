@@ -204,7 +204,7 @@
             });
 
             document.getElementById('download').addEventListener('click', function() {
-                var videoURL = "https://videos.mubi.tech" + vid.getAttribute('data-path');
+                var videoURL = "https://videos.mubi.tech<%= video.path %>";
                 window.open(videoURL, '_blank').focus();
             });
         });
