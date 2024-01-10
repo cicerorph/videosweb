@@ -2,6 +2,8 @@
 
 <p align=center>videosweb is a open-source project to upload videos and look smart...</p>
 
+Original Repo: [CLICK HERE](https://github.com/TechGigant/video-site)
+
 ## Projects on this group
 There are also projects that the gamine project might also have:
 <!------------------------------------>
