@@ -7,12 +7,12 @@ const sanitizeHtml = require('sanitize-html');
 const { Webhook } = require('simple-discord-webhooks');
 const extractFrames = require('ffmpeg-extract-frames');
 const conf = require('./config.json');
-app.use(express.bodyParser());
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.set('view engine', 'ejs');
+app.use(express.bodyParser());
 
 Array.prototype.randoms = function () {
     const result = [...this];
