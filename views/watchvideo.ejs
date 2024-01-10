@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="https://vjs.zencdn.net/8.9.0/video-js.css" rel="stylesheet" />
     <link href="/style.css" rel="stylesheet" />
     <meta property="og:title" content="<%= video.title %>" />
@@ -20,26 +20,42 @@
             text-shadow: 0 0 3px #000000, 0 0 5px #000000;
             margin: auto;
             margin-top: 20px;
-            max-width: 50%;
+            max-width: 100%;
+        }
+
+        .header {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(29, 29, 29);
+            width: 100%;
+            flex-direction: column;
+            align-items: stretch;
+            /* Remove unnecessary properties */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: #fff;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .header a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            transition: all 0.25s;
+            margin-bottom: 10px; /* Adjusted for better spacing on small screens */
         }
 
         .video-js {
-            width: 854px;
-            height: 480px;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
         }
 
-        .description {
-            text-align: left;
-            white-space: pre-wrap;
-        }
-
-        .bottom {
-            box-shadow: 0 0 10px #000000, 0 0 1px #000000;
-            padding: 10px;
-            background-color: rgb(46, 46, 46);
-            border-radius: 10px;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
+        .container {
+            max-width: 100%;
         }
 
         .video-wrapper {
@@ -51,26 +67,20 @@
             padding: 10px;
             box-shadow: 0 0 5px #000000, 0 0 1px #000000;
             background-color: rgb(44, 44, 44);
-            width: 160px;
+            width: 100%; /* Make it responsive */
             padding-bottom: 0px;
-        }
-
-        .video-wrapper:hover {
-            scale: 1.05;
-            box-shadow: 0 0 10px #000000, 0 0 1px #000000;
-            color: rgb(0, 162, 255);
         }
 
         .video-thumbnail {
             object-fit: contain;
-            width: 160x;
-            max-width: 160px;
-            height: 85px;
-            max-height: 85px;
+            width: 100%; /* Make it responsive */
+            max-width: none;
+            height: auto;
         }
 
         .video-title {
             margin-top: 5px;
+            font-size: 12px; /* Adjusted for smaller screens */
         }
 
         a {
@@ -115,15 +125,47 @@
         .menu li:hover {
             background-color: #555;
         }
-        
+
         .spacer {
             display: block;
             height: 5px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                max-width: 100%;
+            }
+
+            .header {
+                max-width: 100%;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            .video-wrapper {
+                max-width: 100%;
+            }
+
+            h1, h3 {
+                font-size: 16px;
+            }
+
+            .video-title {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="header">
+        <a href="https://videos.mubi.tech"><h1>videos.mubi.tech</h1></a>
+        <a></a>
+        <a href="https://videos.mubi.tech/upload">Upload</a>
+        <a href="https://auth.itinerary.eu.org/auth/?redirect=aHR0cHM6Ly92aWRlb3MubXViaS50ZWNoLw==&name=Videos Mubi Tech">Login</a>
+    </div>
     <div class="container">
         <video class="video-js" controls preload="auto" data-setup="{}">
             <source src="<%= video.path %>">
