@@ -102,7 +102,7 @@ app.post('/upload', upload.single('video'), async (req, res) => {
 });
 
 app.post('/delete', async (req, res) => {
-    console.log(req)
+    console.log(req.body)
     // Check if req.body is defined
     if (!req.body || !req.body.id || req.body.token !== token) {
       return res.render('failedToken');
