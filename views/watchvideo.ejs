@@ -186,7 +186,7 @@
             });
 
             document.getElementById('copyUrl').addEventListener('click', function() {
-                var videoURL = vid.currentSrc;
+                var videoURL = window.location.href;
                 navigator.clipboard.writeText(videoURL).then(() => {
                     alert('Copied to cliboard!')
                 }).catch(err => {
@@ -195,7 +195,7 @@
             });
 
             document.getElementById('copyTime').addEventListener('click', function() {
-                var videoURL = vid.currentSrc + '#t=' + Math.round(vid.currentTime);
+                var videoURL = window.location.href + '#t=' + Math.round(vid.currentTime);
                 navigator.clipboard.writeText(videoURL).then(() => {
                     alert('Copied to cliboard!')
                 }).catch(err => {
